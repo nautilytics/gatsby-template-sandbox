@@ -1,22 +1,23 @@
 ## Gatsby Template Cypress Sandbox
 
-First, build the static pages:
+Install dependencies:
 
 ```bash
-npm run build
+npm install
 # or
-yarn build
+yarn install
 ```
 
-Second, run the development server:
+First, build and serve the static pages:
+
 ```bash
-npm run develop
+npm run serve
 # or
-yarn develop
+yarn serve
 ```
 
 Then, in a second terminal run Percy w/ your `PERCY_TOKEN`:
 
 ```bash
-PERCY_TOKEN=<PERCY_TOKEN> npx percy exec -- cypress run --spec 'cypress/e2e/app.cy.ts' --config video=false,screenshotOnRunFailure=false
+PERCY_TOKEN=<PERCY_TOKEN> npx percy exec -- start-server-and-test serve http://localhost:8000 cypress:headless
 ```
