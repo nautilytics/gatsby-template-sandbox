@@ -17,9 +17,7 @@ jobs:
         with:
           node-version: 18.0.0
       - name: Install dependencies
-        uses: cypress-io/github-action@v4.2.2
-        with:
-          runTests: false
+        run: npm install
 
   cypress-percy-visual-tests:
     needs: [install-dependencies]
