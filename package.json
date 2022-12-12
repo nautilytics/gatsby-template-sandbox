@@ -11,13 +11,13 @@
     "develop": "gatsby develop",
     "start": "gatsby develop",
     "build": "gatsby build",
-    "serve": "gatsby serve",
+    "serve": "npm run build && gatsby serve -p=8000",
     "clean": "gatsby clean",
     "typecheck": "tsc --noEmit",
     "cypress": "cypress open",
     "cypress:headless": "cypress run --config video=false,screenshotOnRunFailure=false",
     "e2e": "start-server-and-test dev http://localhost:8000 cypress",
-    "e2e:headless": "start-server-and-test develop http://localhost:8000 cypress:headless"
+    "e2e:headless": "start-server-and-test serve http://localhost:8000 cypress:headless"
   },
   "dependencies": {
     "gatsby": "5.2.0",
