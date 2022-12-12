@@ -11,12 +11,13 @@
     "develop": "gatsby develop",
     "start": "gatsby develop",
     "build": "gatsby build",
-    "build-and-run-tests": "npm run build && npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "typecheck": "tsc --noEmit",
     "cypress": "cypress open",
-    "cypress:headless": "cypress run"
+    "cypress:headless": "cypress run --config video=false,screenshotOnRunFailure=false",
+    "e2e": "start-server-and-test dev http://localhost:8000 cypress",
+    "e2e:headless": "start-server-and-test develop http://localhost:8000 cypress:headless"
   },
   "dependencies": {
     "gatsby": "5.2.0",
@@ -37,6 +38,7 @@
     "@types/react": "18.0.26",
     "@types/react-dom": "18.0.9",
     "cypress": "12.0.2",
+    "start-server-and-test": "1.15.1",
     "typescript": "4.9.3"
   }
 }
