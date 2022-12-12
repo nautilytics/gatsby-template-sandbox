@@ -25,7 +25,7 @@ jobs:
           start: npm run serve # builds and subsequently runs the development server
           wait-on: 'http://localhost:8000/'
           browser: chrome
-          command: npx percy exec -- npm run e2e:headless
+          command: npx percy exec -- npm run cypress:headless
         env:
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
