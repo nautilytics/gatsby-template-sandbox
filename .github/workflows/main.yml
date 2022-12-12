@@ -24,10 +24,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18.0.0
 
       - name: Cypress visual tests 🧪
         uses: cypress-io/github-action@v4.2.2
         with:
+          install: false
           start: npm run build && npm run develop # builds and subsequently runs the development server
           wait-on: 'http://localhost:8000'
           browser: chrome
