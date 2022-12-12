@@ -1,0 +1,36 @@
+name: e2e test w/ Percy
+on:
+  push:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  install-dependencies:
+    name: Install Dependencies
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install dependencies
+        uses: cypress-io/github-action@v4.2.2
+        with:
+          runTests: false
+
+  cypress-percy-visual-tests:
+    needs: [install-dependencies]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Cypress visual tests 🧪
+        uses: cypress-io/github-action@v4.2.2
+        with:
+          start: npm run build && npm run develop # builds and subsequently runs the development server
+          wait-on: 'http://localhost:8000'
+          browser: chrome
+          command: npx percy exec -- cypress run --spec 'cypress/e2e/app.cy.ts' --config video=false,screenshotOnRunFailure=false
+        env:
+          PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
