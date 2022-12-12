@@ -22,7 +22,7 @@ jobs:
         uses: cypress-io/github-action@v4.2.2
         with:
           install: false
-          start: npm run build && npm run develop # builds and subsequently runs the development server
+          start: npm run build-and-run-tests # builds and subsequently runs the development server
           wait-on: 'http://localhost:8000'
           browser: chrome
           command: npx percy exec -- cypress run --spec 'cypress/e2e/app.cy.ts' --config video=false,screenshotOnRunFailure=false
